@@ -8,6 +8,7 @@
 
   users.users.drusk = {
     isNormalUser = true;
+    initialPassword = "foo";
     uid = 1000;
     extraGroups = [
       "networkmanager"
