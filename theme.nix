@@ -2,13 +2,8 @@
   light = true;
 
   font = {
-    family = "GoMono";
+    family = "JetBrainsMono";
     size = 14;
-  };
-
-  primary = {
-    background = "#fdf6e3";
-    foreground = "#586e75";
   };
 
   cursor = {
@@ -16,26 +11,32 @@
     foreground = "#fdf6e3";
   };
 
-  normal = {
-    black = "#073642";
-    red = "#dc322f";
-    green = "#859900";
-    yellow = "#b58900";
-    blue = "#268bd2";
-    magenta = "#d33682";
-    cyan = "#2aa198";
-    white = "#eee8d5";
+
+    # Default colors
+  primary = {	
+    background = "#2C2E43";
+    foreground = "#bfbfcb";
   };
 
+  normal = {
+    black   = "#29283c";
+    red     = "#eca8a8";
+    green   = "#ccd389";
+    yellow  = "#efd5a0";
+    blue    = "#a5c6e1";
+    magenta = "#e1bee9";
+    cyan    = "#c7ebe6";
+    white   = "#bbbbcb";
+  };
   bright = {
-    black = "#002b36";
-    red = "#cb4b16";
-    green = "#586e75";
-    yellow = "#657b83";
-    blue = "#839496";
-    magenta = "#6c71c4";
-    cyan = "#93a1a1";
-    white = "#fdf6e3";
+    black   = "#2e2e3f";
+    red     = "#ffc4c4";
+    green   = "#eff6ab";
+    yellow  = "#ffe6b5";
+    blue    = "#c9e6fd";
+    magenta = "#f7d7ff";
+    cyan    = "#ddfcf8";
+    white   = "#e1e1ef";
   };
 
   wm = {
