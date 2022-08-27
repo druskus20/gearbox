@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   home-manager.users.drusk = {
     programs.alacritty = {
       enable = true;
@@ -10,15 +9,29 @@
           y = 8;
         };
 
-        font = {
-          family = "GoMono";
-          size = 6;
+        font = with import ../theme.nix; {
+          inherit (font) size;
+          normal = {
+            inherit (font) family;
+            style = "Regular";
+          };
+          bold = {
+            inherit (font) family;
+            style = "Bold";
+          };
+          italic = {
+            inherit (font) family;
+            style = "Italic";
+          };
+          bold_italic = {
+            inherit (font) family;
+            style = "Bold Italic";
+          };
         };
 
-        colors = with import ../colors.nix; {
+        colors = with import ../theme.nix; {
           primary = {
-            background = primary.background;
-            foreground = primary.foreground;
+            inherit (primary) background foreground;
           };
 
           cursor = {
@@ -27,25 +40,11 @@
           };
 
           normal = {
-            black = normal.black;
-            red = normal.red;
-            green = normal.green;
-            yellow = normal.yellow;
-            blue = normal.blue;
-            magenta = normal.magenta;
-            cyan = normal.cyan;
-            white = normal.white;
+            inherit (normal) black red green yellow blue magenta cyan white;
           };
 
           bright = {
-            black = bright.black;
-            red = bright.red;
-            green = bright.green;
-            yellow = bright.yellow;
-            blue = bright.blue;
-            magenta = bright.magenta;
-            cyan = bright.cyan;
-            white = bright.white;
+            inherit (bright) black red green yellow blue magenta cyan white;
           };
         };
       };

@@ -1,6 +1,10 @@
 {
-  # TODO: change to theme.nix including font and size
-  lighttheme = true;
+  light = true;
+
+  font = {
+    family = "GoMono";
+    size = 14;
+  };
 
   primary = {
     background = "#fdf6e3";
@@ -42,8 +46,7 @@
 
     unfocused = {
       text = "#788e95";
-      border = "#ddd6c3";
+      border = "#fdf6e3";
     };
   };
 }
-

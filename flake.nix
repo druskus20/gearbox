@@ -11,7 +11,7 @@
     nixosConfigurations.drusk = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = args // { inherit nixpkgs; };
-      modules = [ ./drusk.nix ];
+      modules = [ ./configuration.nix ];
     };
   };
 }
