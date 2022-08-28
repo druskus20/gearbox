@@ -1,8 +1,8 @@
 {
-  light = true;
+  light = false;
 
   font = {
-    family = "JetBrainsMono";
+    family = "JetBrainsMono Nerd Font Mono";
     size = 14;
   };
 

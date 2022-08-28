@@ -27,7 +27,7 @@
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/Stockholm";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -115,6 +115,10 @@
     neovim
   ];
 
+  environment.shellAliases = {
+  	vim = "nvim";
+  };
+
   fonts.fonts = with pkgs; [
     dejavu_fonts
     go-font
@@ -126,6 +130,7 @@
     home = {
       stateVersion = "22.05";
       packages = with pkgs; [
+      	google-chrome
         du-dust
         fd
         gdb
@@ -146,6 +151,7 @@
       };
 
       pointerCursor = {
+	size = 32;
         package = pkgs.phinger-cursors;
         name = "phinger-cursors-light";
         gtk.enable = true;
@@ -153,6 +159,8 @@
     };
 
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   nix = {
     autoOptimiseStore = true;
@@ -168,6 +176,15 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+  };
+
+  services = {
+	tlp = {
+		enable = true;
+		settings = {
+
+		};
+	};
   };
 }
 

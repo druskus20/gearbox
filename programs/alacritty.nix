@@ -7,6 +7,7 @@ _: {
         window.padding = {
           x = 8;
           y = 8;
+	  opacity = 0.5;
         };
 
         font = with import ../theme.nix; {

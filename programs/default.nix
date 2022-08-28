@@ -2,8 +2,8 @@
   imports = [
     ./alacritty.nix
     ./bash.nix
+    ./vscode.nix
 #    ./borg.nix
-    ./chromium.nix
     ./git.nix
 #    ./gpg.nix
 #    ./mako.nix

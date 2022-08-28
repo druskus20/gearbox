@@ -12,7 +12,7 @@
       xwayland = false;
 
       config = let
-        browser = "chromium";
+        browser = "google-chrome-stable";
         mod = "Mod4";
         terminal = "alacritty";
         theme = import ../theme.nix;
@@ -54,6 +54,9 @@
       in {
         modifier = mod;
         window.border = 1;
+	window.commands = [
+		#{ command = "opacity 1.0"; criteria = { app_id = ".*"; }; }
+	];
         focus.followMouse = true;
         fonts = {
           names = [theme.font.family];
@@ -66,10 +69,18 @@
           outer = 0;
         };
 
-        input."*" = {
-		xkb_options = "compose:ralt";
+        input."type:keyboard" = {
 		xkb_layout = "es";
+		repeat_delay = "250";
+		repeat_rate = "35";
+		xkb_options = "caps:escape compose:prsc";
 	};
+
+	input."type:touchpad" = { 
+		tap = "true";
+		natural_scroll = "true";
+	};
+
         output."*" = {bg = "${theme.primary.background} solid_color";};
 
         colors = with theme; rec {
@@ -92,11 +103,11 @@
 
         keybindings =
           {
-            "${mod}+Shift+c" = "kill";
+            "${mod}+Shift+q" = "kill";
             "${mod}+Control+r" = "reload";
-            "${mod}+Shift+e" = "exit";
+            #"${mod}+Shift+e" = "exit";
 
-            "${mod}+Shift+Return" = "exec ${terminal}";
+            "${mod}+Return" = "exec ${terminal}";
             "${mod}+i" = "exec ${browser}";
             "${mod}+Shift+y" = "exec ${pkgs.swaylock}/bin/swaylock -ec '${theme.primary.background}'";
             "${mod}+z" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 1%-";
@@ -142,7 +153,10 @@
           }
           // (joinAttrSets (map makeWorkspaceBinds (lib.range 1 9)));
 
-        seat."*" = {hide_cursor = "when-typing enable";};
+        seat."*" = {
+		hide_cursor = "when-typing enable";
+		xcursor_theme = "phinger-cursors-light 32";
+	};
 
         bars = [
           {
