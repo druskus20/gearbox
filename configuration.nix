@@ -11,6 +11,8 @@
   # Don't change!
   system.stateVersion = "22.05";
 
+  nixpkgs.config.allowUnfree = true;
+
   users.users.drusk = {
     isNormalUser = true;
     initialPassword = "foo";
@@ -160,7 +162,6 @@
 
   };
 
-  nixpkgs.config.allowUnfree = true;
 
   nix = {
     autoOptimiseStore = true;
