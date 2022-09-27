@@ -73,12 +73,14 @@
 		xkb_layout = "es";
 		repeat_delay = "250";
 		repeat_rate = "35";
-		xkb_options = "caps:escape compose:prsc";
+		xkb_options = "caps:escape,compose:prsc";
 	};
 
 	input."type:touchpad" = { 
 		tap = "true";
 		natural_scroll = "true";
+		pointer_accel = "0.7";
+
 	};
 
         output."*" = {bg = "${theme.primary.background} solid_color";};
@@ -155,7 +157,7 @@
 
         seat."*" = {
 		hide_cursor = "when-typing enable";
-		xcursor_theme = "phinger-cursors-light 32";
+		xcursor_theme = "phinger-cursors-light 16";
 	};
 
         bars = [

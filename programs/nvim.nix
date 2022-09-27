@@ -1,3 +1,4 @@
+
 {
   lib,
   pkgs,
@@ -20,16 +21,12 @@
           };
         buildPlugins = names: lib.attrsets.genAttrs names buildPlugin;
         plugins = buildPlugins [
-          "cmp-conventionalcommits"
-          "cmp-git"
-          "lsp-trouble"
         ];
       in
         with pkgs.vimPlugins;
         with plugins; [
           {plugin = cmp-buffer;}
           {plugin = cmp-calc;}
-          {plugin = cmp-conventionalcommits;}
           {plugin = cmp-latex-symbols;}
           {plugin = cmp-nvim-lsp;}
           {plugin = cmp-path;}
@@ -38,14 +35,13 @@
           {plugin = editorconfig-nvim;}
           {plugin = friendly-snippets;}
           {plugin = fugitive;}
-          {plugin = lsp-trouble;}
+          {plugin = playground;}
           {plugin = rust-vim;}
           {plugin = tabular;}
           {plugin = vim-nix;}
           {plugin = vim-repeat;}
 
           {
-            plugin = cmp-git;
             config = "lua require 'cmp_git'.setup()";
           }
 
@@ -53,21 +49,17 @@
             plugin = crates-nvim;
             config = ''
               lua require 'crates'.setup()
-
               nnoremap <silent> ${leader}ct :lua require('crates').toggle()<cr>
               nnoremap <silent> ${leader}cr :lua require('crates').reload()<cr>
-
               nnoremap <silent> ${leader}cv :lua require('crates').show_versions_popup()<cr>
               nnoremap <silent> ${leader}cf :lua require('crates').show_features_popup()<cr>
               nnoremap <silent> ${leader}cd :lua require('crates').show_dependencies_popup()<cr>
-
               nnoremap <silent> ${leader}cu :lua require('crates').update_crate()<cr>
               vnoremap <silent> ${leader}cu :lua require('crates').update_crates()<cr>
               nnoremap <silent> ${leader}ca :lua require('crates').update_all_crates()<cr>
               nnoremap <silent> ${leader}cU :lua require('crates').upgrade_crate()<cr>
               vnoremap <silent> ${leader}cU :lua require('crates').upgrade_crates()<cr>
               nnoremap <silent> ${leader}cA :lua require('crates').upgrade_all_crates()<cr>
-
               nnoremap <silent> ${leader}cH :lua require('crates').open_homepage()<cr>
               nnoremap <silent> ${leader}cR :lua require('crates').open_repository()<cr>
               nnoremap <silent> ${leader}cD :lua require('crates').open_documentation()<cr>
@@ -96,7 +88,6 @@
             plugin = lspsaga-nvim;
             config = ''
               lua require 'lspsaga'.init_lsp_saga()
-
               nnoremap <silent> ${leader}a :Lspsaga code_action<cr>
               nnoremap <silent> ${leader}r :Lspsaga rename<cr>
               nnoremap <silent> gd :lua vim.lsp.buf.definition()<cr>
@@ -121,10 +112,8 @@
             plugin = nvim-cmp;
             config = ''
               set completeopt=menu,menuone,noselect
-
               lua <<EOF
                 local cmp = require 'cmp'
-
                 cmp.setup {
                   snippet = {
                     expand = function(args)
@@ -255,19 +244,14 @@
         " keybinds
         let mapleader = "${leader}"
         let g:mapleader = "${leader}"
-
         inoremap kj <esc>
-
         vnoremap < <gv
         vnoremap > >gv
-
         nnoremap <c-h> <c-w>h
         nnoremap <c-j> <c-w>j
         nnoremap <c-k> <c-w>k
         nnoremap <c-l> <c-w>l
-
         nnoremap <leader>s :w<cr>
-
         " misc
         set termguicolors
         set mouse=a
@@ -289,15 +273,12 @@
         set updatetime=250
         set colorcolumn=+1
         set cursorline
-
         set shiftwidth=4
         set tabstop=4
         set expandtab
-
         set shiftround
         set autoindent
         set smartindent
-
         highlight! ExtraWhitespace guibg=${theme.normal.red}
         match ExtraWhitespace /\s\+$/
       '';

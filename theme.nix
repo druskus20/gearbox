@@ -2,11 +2,16 @@
   light = false;
 
   font = {
+    # TODO: Link this to the package install. Maybe include a family atribute inside the font package. jetbrainsmono.overrideAttrs.family = " "
     family = "JetBrainsMono Nerd Font Mono";
     size = 14;
   };
 
-  cursor = {
+  cursor = { 
+#    # TODO: Link this to the package install. Maybe include a name atribute inside the font package. phinger-cursors.overrideAttrs.family = " "
+#    name = "phinger-cursors"
+#    light = true
+#    size = 32
     background = "#586e75";
     foreground = "#fdf6e3";
   };
