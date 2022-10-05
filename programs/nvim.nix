@@ -1,4 +1,3 @@
-
 {
   lib,
   pkgs,
@@ -21,52 +20,27 @@
           };
         buildPlugins = names: lib.attrsets.genAttrs names buildPlugin;
         plugins = buildPlugins [
+          "cmp-conventionalcommits"
+          "cmp-git"
+          "lsp-trouble"
         ];
       in
         with pkgs.vimPlugins;
         with plugins; [
           {plugin = cmp-buffer;}
           {plugin = cmp-calc;}
+          {plugin = cmp-conventionalcommits;}
           {plugin = cmp-latex-symbols;}
           {plugin = cmp-nvim-lsp;}
           {plugin = cmp-path;}
           {plugin = cmp-treesitter;}
           {plugin = cmp-vsnip;}
-          {plugin = editorconfig-nvim;}
-          {plugin = friendly-snippets;}
-          {plugin = fugitive;}
-          {plugin = playground;}
+          {plugin = lsp-trouble;}
           {plugin = rust-vim;}
-          {plugin = tabular;}
-          {plugin = vim-nix;}
-          {plugin = vim-repeat;}
-
           {
+            plugin = cmp-git;
             config = "lua require 'cmp_git'.setup()";
           }
-
-          {
-            plugin = crates-nvim;
-            config = ''
-              lua require 'crates'.setup()
-              nnoremap <silent> ${leader}ct :lua require('crates').toggle()<cr>
-              nnoremap <silent> ${leader}cr :lua require('crates').reload()<cr>
-              nnoremap <silent> ${leader}cv :lua require('crates').show_versions_popup()<cr>
-              nnoremap <silent> ${leader}cf :lua require('crates').show_features_popup()<cr>
-              nnoremap <silent> ${leader}cd :lua require('crates').show_dependencies_popup()<cr>
-              nnoremap <silent> ${leader}cu :lua require('crates').update_crate()<cr>
-              vnoremap <silent> ${leader}cu :lua require('crates').update_crates()<cr>
-              nnoremap <silent> ${leader}ca :lua require('crates').update_all_crates()<cr>
-              nnoremap <silent> ${leader}cU :lua require('crates').upgrade_crate()<cr>
-              vnoremap <silent> ${leader}cU :lua require('crates').upgrade_crates()<cr>
-              nnoremap <silent> ${leader}cA :lua require('crates').upgrade_all_crates()<cr>
-              nnoremap <silent> ${leader}cH :lua require('crates').open_homepage()<cr>
-              nnoremap <silent> ${leader}cR :lua require('crates').open_repository()<cr>
-              nnoremap <silent> ${leader}cD :lua require('crates').open_documentation()<cr>
-              nnoremap <silent> ${leader}cC :lua require('crates').open_crates_io()<cr>
-            '';
-          }
-
           {
             plugin = gitsigns-nvim;
             config = ''
@@ -74,8 +48,6 @@
               set signcolumn=yes
             '';
           }
-
-          # TODO: replace with own bar
           {
             plugin = lightline-vim;
             config = ''
@@ -83,7 +55,6 @@
               set noshowmode
             '';
           }
-
           {
             plugin = lspsaga-nvim;
             config = ''
@@ -94,7 +65,6 @@
               nnoremap <silent> gD :lua vim.lsp.buf.declaration()<cr>
             '';
           }
-
           {
             plugin = NeoSolarized;
             config = ''
@@ -102,12 +72,6 @@
               colorscheme NeoSolarized
             '';
           }
-
-          {
-            plugin = nvim-autopairs;
-            config = "lua require 'nvim-autopairs'.setup {}";
-          }
-
           {
             plugin = nvim-cmp;
             config = ''
@@ -159,6 +123,7 @@
               '';
               servers = [
                 "clangd"
+                "gopls"
                 "rust_analyzer"
               ];
               serverConfigs = lib.strings.concatStringsSep "\n" (builtins.map configure servers);
@@ -181,60 +146,6 @@
               nnoremap <silent> ${leader}b :Telescope buffers<cr>
               nnoremap <silent> ${leader}: :Telescope commands<cr>
             '';
-          }
-
-          {
-            plugin = nvim-treesitter.withPlugins (plugins:
-              with plugins; [
-                tree-sitter-bash
-                tree-sitter-bibtex
-                tree-sitter-c
-                tree-sitter-cmake
-                tree-sitter-comment
-                tree-sitter-cpp
-                tree-sitter-css
-                tree-sitter-devicetree
-                tree-sitter-dockerfile
-                tree-sitter-fennel
-                tree-sitter-go
-                tree-sitter-javascript
-                tree-sitter-json
-                tree-sitter-latex
-                tree-sitter-lua
-                tree-sitter-make
-                tree-sitter-markdown
-                tree-sitter-nix
-                tree-sitter-perl
-                tree-sitter-python
-                tree-sitter-regex
-                tree-sitter-rust
-                tree-sitter-toml
-              ]);
-            config = ''
-              lua <<EOF
-                require 'nvim-treesitter.configs'.setup {
-                highlight = {
-                  enable = true,
-                  additional_vim_regex_highlighting = false,
-                  },
-                }
-              EOF
-            '';
-          }
-
-          {
-            plugin = vim-vsnip;
-            config = ''
-              imap <expr> <c-k> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-              smap <expr> <c-k> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-              imap <expr> <c-j> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-              smap <expr> <c-j> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-            '';
-          }
-
-          {
-            plugin = vimwiki;
-            # TODO: vimwiki config
           }
         ];
 

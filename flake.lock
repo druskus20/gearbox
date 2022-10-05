@@ -1,5 +1,57 @@
 {
   "nodes": {
+    "agenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1664140963,
+        "narHash": "sha256-pFxDtOLduRFlol0Y4ShE+soRQX4kbhaCNBtDOvx7ykw=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "6acb1fe5f8597d5ce63fc82bc7fcac7774b1cdf0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
+    "cmp-conventionalcommits": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1635383929,
+        "narHash": "sha256-ZuVXmn4YkeMFiLjSVTd+6DBdtn0D+PI44J3kLDX6Wwo=",
+        "owner": "davidsierradz",
+        "repo": "cmp-conventionalcommits",
+        "rev": "5518362bc4f5dfbc9d242d9379fdec48b6278c5e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "davidsierradz",
+        "repo": "cmp-conventionalcommits",
+        "type": "github"
+      }
+    },
+    "cmp-git": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659918460,
+        "narHash": "sha256-/fHoZxtJFG9v1sw/rQU2fa0ybO7bIovvRvY6M/mU5sc=",
+        "owner": "petertriho",
+        "repo": "cmp-git",
+        "rev": "fae6cdb407ad6c63a0b1928670bad1a67a55b887",
+        "type": "github"
+      },
+      "original": {
+        "owner": "petertriho",
+        "repo": "cmp-git",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -21,6 +73,22 @@
         "type": "github"
       }
     },
+    "lsp-trouble": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620090273,
+        "narHash": "sha256-Vrv9xWGANqruKwtWlb5jr/4i5bsM8mZiyG6FPENhi9w=",
+        "owner": "simrat39",
+        "repo": "lsp-trouble.nvim",
+        "rev": "315bda04bc48a6d28fc4417b69ec60458d354e7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "simrat39",
+        "repo": "lsp-trouble.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1661427965,
@@ -39,7 +107,11 @@
     },
     "root": {
       "inputs": {
+        "agenix": "agenix",
+        "cmp-conventionalcommits": "cmp-conventionalcommits",
+        "cmp-git": "cmp-git",
         "home-manager": "home-manager",
+        "lsp-trouble": "lsp-trouble",
         "nixpkgs": "nixpkgs"
       }
     }

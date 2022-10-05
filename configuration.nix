@@ -1,7 +1,7 @@
 { config, pkgs, nixpkgs, lib, home-manager, ... }:
 {
   imports =
-    [ 
+    [
       home-manager.nixosModule
       ./programs
       ./hardware-configuration.nix
@@ -14,6 +14,8 @@
     isNormalUser = true;
     initialPassword = "foo";
     uid = 1000;
+    shell = pkgs.zsh;
+
 
     extraGroups = [
 	"networkmanager"
@@ -26,8 +28,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "drusk"; 
-  networking.networkmanager.enable = true;  
+  networking.hostName = "drusk";
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
@@ -35,6 +37,7 @@
   console.keyMap = "es";
   console.font = "Lat2-Terminus32";
 
+  environment.shells = with pkgs; [ zsh ];
   environment.systemPackages = with pkgs; [
     phinger-cursors
     git
