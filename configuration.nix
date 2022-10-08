@@ -120,6 +120,5 @@
 #    upower.enable = true;
 #  };
 
-  nixpkgs.config.allowUnfree = true;
 }
 

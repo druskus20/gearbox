@@ -5,17 +5,9 @@
             # ...
         };
 
-        home.packages = with pkgs; [
-            zsh-you-should-use
-            zsh-fast-syntax-highlighting
-            zsh-autocomplete
-            zsh-history-substring-search
-            gitstatus
-        ];
-
 	    programs.zsh = {
 	      	enable = true;
-            enableAutosuggestions = true;
+            enableAutosuggestions = false;
 	      	enableCompletion = true;
             defaultKeymap = "viins";
             dotDir = ".config/zsh";
@@ -26,6 +18,7 @@
                 size = 50000;
             };
             shellAliases = {
+                la = "ls -a";
                 "cd.." = "cd ..";
                 htop = "htop -t";
                 mkdir = "mkdir -p";
@@ -44,31 +37,24 @@
             '';
             plugins = [
                 {
-                    name = "fast-syntax-highlighting";
-                    src = pkgs.fetchFromGitHub {
-                        owner = "zdharma-continuum";
-                        repo = "fast-syntax-highlighting";
-                        rev = "v1.55";
-                        sha256 = "0h7f27gz586xxw7cc0wyiv3bx0x3qih2wwh05ad85bh2h834ar8d";
-                    };
+                    name = "zsh-fast-syntax-highlighting";
+                    src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+                    file = "fast-syntax-highlighting.plugin.zsh";
                 }
                 {
                     name = "zsh-history-substring-search";
-                    src = pkgs.fetchFromGitHub {
-                        owner = "zsh-users";
-                        repo = "zsh-history-substring-search";
-                        rev = "v1.0.2";
-                        sha256 = "0y8va5kc2ram38hbk2cibkk64ffrabfv1sh4xm7pjspsba9n5p1y";
-                    };
+                    src = "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search";
+                    file = "zsh-history-substring-search.plugin.zsh";
                 }
-                { # TODO not working?
+                {
                     name = "zsh-you-should-use";
-                    src = pkgs.fetchFromGitHub {
-                        owner = "MichaelAquilina";
-                        repo = "zsh-you-should-use";
-                        rev = "v1.7.3";
-                        sha256 = "1dz48rd66priqhxx7byndqhbmlwxi1nfw8ik25k0z5k7k754brgy";
-                    };
+                    src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
+                    file = "you-should-use.plugin.zsh";
+                }
+                {
+                    name = "zsh-autocomplete";
+                    src  = "${pkgs.zsh-autocomplete}/share/zsh-autocomplete";
+                    file = "zsh-autocomplete.plugin.zsh";
                 }
             ];
         };
