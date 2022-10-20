@@ -14,7 +14,7 @@
     isNormalUser = true;
     initialPassword = "foo";
     uid = 1000;
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
 
 
     extraGroups = [
@@ -44,6 +44,13 @@
     neovim
   ];
 
+  # TODO hardcoded name!  also sway is not system wide..
+  services.getty.autologinUser = "drusk";
+  environment.loginShellInit = ''
+    #[[ "$(tty)" == /dev/tty? ]] && sudo /run/current-system/sw/bin/lock this 
+    [[ "$(tty)" == /dev/tty1 ]] && sway
+  '';
+
   environment.shellAliases = {
   	vim = "nvim";
   };
@@ -51,6 +58,7 @@
   environment.sessionVariables = {
   	NIXOS_OZONE_WL = "1";
 	NIXPKGS_ALLOW_UNFREE = "1";
+    BROWSER = "google-chrome-stable";
   };
 
   fonts.fonts = with pkgs; [
@@ -79,11 +87,10 @@
         tree
         wget
         wl-clipboard
+        spotify
+        fzf
       ];
 
-      sessionVariables = {
-        BROWSER = "google-chrome-stable";
-      };
 
       pointerCursor = {
 	size = 16;

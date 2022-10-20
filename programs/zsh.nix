@@ -6,7 +6,7 @@
         };
 
 	    programs.zsh = {
-	      	enable = true;
+	      	enable = false;
             enableAutosuggestions = false;
 	      	enableCompletion = true;
             defaultKeymap = "viins";
@@ -19,7 +19,6 @@
             };
             shellAliases = {
                 la = "ls -a";
-                "cd.." = "cd ..";
                 htop = "htop -t";
                 mkdir = "mkdir -p";
                 rg = "rg -S";
@@ -41,21 +40,21 @@
                     src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
                     file = "fast-syntax-highlighting.plugin.zsh";
                 }
-                {
-                    name = "zsh-history-substring-search";
-                    src = "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search";
-                    file = "zsh-history-substring-search.plugin.zsh";
-                }
+                #{
+                #    name = "zsh-history-substring-search";
+                #    src = "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search";
+                #    file = "zsh-history-substring-search.plugin.zsh";
+                #}
                 {
                     name = "zsh-you-should-use";
                     src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
                     file = "you-should-use.plugin.zsh";
                 }
-                {
-                    name = "zsh-autocomplete";
-                    src  = "${pkgs.zsh-autocomplete}/share/zsh-autocomplete";
-                    file = "zsh-autocomplete.plugin.zsh";
-                }
+                #{
+                #    name = "zsh-autocomplete";
+                #    src  = "${pkgs.zsh-autocomplete}/share/zsh-autocomplete";
+                #    file = "zsh-autocomplete.plugin.zsh";
+                #}
             ];
         };
 	};
