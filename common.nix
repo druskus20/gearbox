@@ -8,7 +8,7 @@
     ];
 
   # Don't change!
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.05";
 
   users.users.drusk = {
     isNormalUser = true;
@@ -24,18 +24,16 @@
     ];
   };
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "drusk";
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
 
-  console.keyMap = "es";
-  console.font = "Lat2-Terminus32";
+  console = {
+    packages = with pkgs; [ terminus_font ];
+    font = "ter-u28n";
+   keyMap = "es";
+  };
+
 
   environment.shells = with pkgs; [ zsh ];
   environment.systemPackages = with pkgs; [
@@ -89,6 +87,8 @@
         wl-clipboard
         spotify
         fzf
+	hyprland
+	kitty
       ];
 
 
@@ -101,31 +101,26 @@
     };
   };
 
-  nix = {
-    autoOptimiseStore = true;
-    trustedUsers = ["root" "drusk"];
-    registry.nixpkgs.flake = nixpkgs;
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
-
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
 
 #  powerManagement = {
 #    enable = true;
 #    powertop.enable = true;
 #  };
 #
-#  services = {
-#    tlp.enable = true;
-#    upower.enable = true;
-#  };
+
+services.tlp = {
+      enable = true;
+
+      settings = {
+        START_CHARGE_THRESH_BAT0 = 40;
+        STOP_CHARGE_THRESH_BAT0 = 60;
+
+        START_CHARGE_THRESH_BAT1 = 40;
+        STOP_CHARGE_THRESH_BAT1 = 60;
+      };
+    };
+
+
 
 }
 
