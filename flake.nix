@@ -22,7 +22,7 @@
   outputs = {
   	self, 
   	nixpkgs, 
-  	home-manager, 
+  	#home-manager, 
 	nixpkgs-unstable,
 	agenix,
 	nur, ... 

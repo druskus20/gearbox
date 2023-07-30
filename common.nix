@@ -1,4 +1,5 @@
 { config, pkgs, nixpkgs, lib, home-manager, ... }:
+#{ config, pkgs, nixpkgs, lib, ... }:
 {
   imports =
     [
@@ -71,42 +72,44 @@
       stateVersion = "22.05";
       packages = with pkgs; [
       	wireshark
-      	google-chrome
-        du-dust
-        fd
-        gdb
-        github-cli
-        htop
-        kcachegrind
-        linuxPackages.perf
-        ripgrep
-        strace
-        trash-cli
-        tree
-        wget
-        wl-clipboard
-        spotify
-        fzf
-	hyprland
-	kitty
-      ];
+];
+      #	google-chrome
+      #  du-dust
+      #  fd
+      #  gdb
+      #  github-cli
+      #  htop
+      #  kcachegrind
+      #  linuxPackages.perf
+      #  ripgrep
+      #  strace
+      #  trash-cli
+      #  tree
+      #  wget
+      #  wl-clipboard
+      #  spotify
+      #  fzf
+      #  hyprland
+      #  kitty
+      #  wofi
+      #];
 
 
-      pointerCursor = {
-	size = 16;
-        package = pkgs.phinger-cursors;
-        name = "phinger-cursors-light";
-        gtk.enable = true;
-      };
+      #pointerCursor = {
+      #  size = 16;
+      #  package = pkgs.phinger-cursors;
+      #  name = "phinger-cursors-light";
+      #  gtk.enable = true;
+      #};
     };
   };
 
 
-#  powerManagement = {
-#    enable = true;
-#    powertop.enable = true;
-#  };
-#
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
+
 
 services.tlp = {
       enable = true;
